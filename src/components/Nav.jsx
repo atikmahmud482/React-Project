@@ -5,18 +5,23 @@ import { LuShoppingBag } from "react-icons/lu";
 const Nav = () => {
   return (
     <div className="w-full h-[100px] flex justify-between items-center px-8">
-      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center">
-        <MdFastfood />
+      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl">
+        <MdFastfood className="w-[30px] h-[30px] text-green-500" />
       </div>
-      <form action="">
-        <IoSearch />
+      <form
+        className="w-[70%] h-[60px] bg-white flex items-center px-5 gap-5 rounded-md shadow-md"
+        action="">
+        <IoSearch className="text-green-500 w-[25px] h-[25px]" />
         <input
-          className="bg-white"
           type="text"
-          placeholder="Search Item..."></input>
+          placeholder="Search Item..."
+          className=" w-[100%] outline-none text-[20px]"></input>
       </form>
-      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center">
-        <LuShoppingBag />
+      <div className="w-[60px] h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl relative">
+        <span className="absolute top-0 right-2 text-green-500 font-bold">
+          0
+        </span>
+        <LuShoppingBag className="w-[30px] h-[30px] text-green-500" />
       </div>
     </div>
   );
