@@ -4,15 +4,27 @@ import Nav from "../components/nav";
 const Home = () => {
   return (
     <div className="bg-slate-200 w-full min-h-screen">
+      {/* Navigation Bar */}
       <Nav />
-      <div className="overflow-x-auto whitespace-nowrap p-4">
-        <div className="flex gap-15 justify-center">
+
+      {/* Categories Section */}
+      <div className="p-4">
+        {/* Grid for small screens, flex for medium & large */}
+        <div className="grid grid-cols-3 gap-4 md:flex md:flex-wrap md:justify-center md:gap-6">
           {Categories.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-lg shadow-md p-3 w-30 h-30 flex flex-col items-center justify-center hover:shadow-lg transition-shadow duration-300 cursor-pointer text-center hover:bg-green-200">
-              <div className="text-4xl">{item.image}</div>
-              <div className="mt-2 text-sm font-semibold">{item.name}</div>
+              className="bg-white rounded-lg shadow-md p-3 
+                         w-full sm:w-auto md:w-24 lg:w-28 h-24 flex flex-col items-center justify-center 
+                         hover:shadow-lg transition-shadow duration-300 cursor-pointer 
+                         text-center hover:bg-green-200">
+              {/* Category Icon */}
+              <div className="text-3xl sm:text-4xl">{item.image}</div>
+
+              {/* Category Name */}
+              <div className="mt-1 text-xs sm:text-sm font-semibold">
+                {item.name}
+              </div>
             </div>
           ))}
         </div>
