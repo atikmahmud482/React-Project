@@ -1,5 +1,7 @@
 import Categories from "../Category";
+import Card from "../components/Card";
 import Nav from "../components/nav";
+import { food_items } from "../food";
 
 const Home = () => {
   return (
@@ -28,6 +30,18 @@ const Home = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="w-full flex flex-wrap gap-5 px-5 justify-center items-center pt-8 pb-8">
+        {food_items.map((item) => (
+          <Card
+            key={item.id}
+            name={item.food_name}
+            image={item.food_image}
+            price={item.price}
+            id={item.id}
+            type={item.food_type}
+          />
+        ))}
       </div>
     </div>
   );
