@@ -4,7 +4,7 @@ import { LuShoppingBag } from "react-icons/lu";
 
 const Nav = () => {
   return (
-    <div className="w-full h-[80px] md:h-[100px] flex justify-between items-center px-4 md:px-8">
+    <div className="w-full h-[80px] md:h-[100px] flex justify-between items-center px-4 md:px-8 fixed top-0 left-0 z-50 bg-white shadow-md">
       {/* Logo Container */}
       <div className="w-[50px] h-[50px] md:w-[60px] md:h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl hover:bg-slate-50">
         <MdFastfood className="w-[25px] h-[25px] md:w-[30px] md:h-[30px] text-green-500" />

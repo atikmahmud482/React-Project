@@ -3,7 +3,7 @@ import { GiChickenOven } from "react-icons/gi"; // Import the missing icon
 
 const Card = ({ name, image, id, price, type }) => {
   return (
-    <div className="w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col gap-3 shadow-lg hover:border-2 border-green-300 ">
+    <div className="w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col gap-3 shadow-lg hover:border-2 border-green-300 transition-normal">
       <div className="w-[100%] h-[60%] overflow-hidden rounded-lg">
         <img src={image} alt={name} className="object-cover w-full h-full" />
       </div>
