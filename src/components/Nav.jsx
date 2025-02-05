@@ -10,17 +10,11 @@ import { useSelector } from "react-redux";
 
 const Nav = () => {
   let { input, setInput, cate, setCate } = useContext(dataContext);
-
-  // State to handle the shopping cart visibility
   const [isCartOpen, setIsCartOpen] = useState(false);
-
-  // Ref for the shopping cart side panel
   const cartRef = useRef(null);
 
-  // Toggle the shopping cart visibility
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
+  // Toggle Cart visibility
+  const toggleCart = () => setIsCartOpen(!isCartOpen);
 
   // Close the cart if clicked outside
   useEffect(() => {
@@ -34,26 +28,24 @@ const Nav = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Update filtered categories whenever the input changes
   useEffect(() => {
-    let newlist = food_items.filter((item) =>
-      item.food_name.toLowerCase().includes(input.toLowerCase())
+    let filteredItems = food_items.filter(
+      (item) => item.food_name.toLowerCase().includes(input.toLowerCase()) // Check for case-insensitive match
     );
-    setCate(newlist);
-  }, [input]);
+    setCate(filteredItems); // Update the context or state to show filtered results
+  }, [input, setCate]);
 
-  // Using Redux to get cart items
   let cartItems = useSelector((state) => state.cart);
-
-  let subTotal = cartItems.reduce((total, item) => total + item.price, 0);
-  let deliveryFee = 40;
-  let taxes = (subTotal * 0.5) / 100;
-  let total = Math.floor(subTotal + deliveryFee + taxes);
 
   return (
     <div className="w-full h-[80px] md:h-[100px] flex justify-between items-center px-4 md:px-8 fixed top-0 left-0 z-50 bg-white shadow-md">
-      {/* Logo Container */}
-      <div className="w-[50px] h-[50px] md:w-[60px] md:h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl hover:bg-slate-50">
-        <MdFastfood className="w-[25px] h-[25px] md:w-[30px] md:h-[30px] text-green-500" />
+      {/* Logo + Brand Name (Left Corner) */}
+      <div className="flex items-center space-x-2">
+        <MdFastfood className="w-[30px] h-[30px] text-green-500 md:w-[40px] md:h-[40px]" />
+        <h1 className="text-xl md:text-2xl font-bold text-green-500">
+          Foodie Delight
+        </h1>
       </div>
 
       {/* Search Bar */}
@@ -65,23 +57,22 @@ const Nav = () => {
           type="text"
           placeholder="Search Item..."
           className="w-[100%] outline-none text-[16px] md:text-[20px]"
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => setInput(e.target.value)} // Update input state on change
           value={input}
         />
       </form>
 
-      {/* Shopping Bag */}
+      {/* Shopping Cart Icon */}
       <div
         className="w-[50px] h-[50px] md:w-[60px] md:h-[60px] bg-white flex justify-center items-center rounded-md shadow-xl relative hover:bg-amber-50 cursor-pointer"
-        onClick={toggleCart} // Trigger toggle function on click
-      >
+        onClick={toggleCart}>
         <span className="absolute top-0 right-1 md:right-2 text-green-500 font-bold text-sm md:text-base">
           {cartItems.length}
         </span>
         <LuShoppingBag className="w-[25px] h-[25px] md:w-[30px] md:h-[30px] text-green-500" />
       </div>
 
-      {/* Order Cart Side Panel */}
+      {/* Order Cart Panel */}
       <div
         ref={cartRef}
         className={`fixed top-0 right-0 w-[400px] h-full bg-white shadow-xl transition-transform transform ease-in-out duration-300 ${
@@ -89,7 +80,6 @@ const Nav = () => {
         }`}>
         <div className="p-4">
           <h2 className="text-xl font-bold text-green-500">Order Items</h2>
-          {/* Close Button */}
           <button
             className="absolute top-5 right-7 text-black text-xl hover:text-red-500"
             onClick={() => setIsCartOpen(false)}>
@@ -97,7 +87,7 @@ const Nav = () => {
           </button>
 
           {/* Cart Items */}
-          <div className="w-full mt-8 flex flex-col gap-5 overflow-auto max-h-[400px]">
+          <div className="mt-6 max-h-[400px] overflow-auto">
             {cartItems.length > 0 ? (
               cartItems.map((cartItem) => (
                 <Card2
@@ -110,42 +100,11 @@ const Nav = () => {
                 />
               ))
             ) : (
-              <p className="text-center text-xl text-gray-600 mt-6">
+              <p className="text-center text-gray-600 text-lg mt-6">
                 Your cart is empty.
               </p>
             )}
           </div>
-          <div className="w-full border-t-2 border-black mt-6 flex flex-col gap-4 p-8 items-center">
-            <div className="w-full flex justify-between ">
-              <span className="text-lg text-black font-semibold">Subtotal</span>
-              <span className="text-green-400 font-semibold text-lg">
-                Tk {subTotal}/-
-              </span>
-            </div>
-            <div className="w-full flex justify-between items-center">
-              <span className="text-lg text-black font-semibold">
-                Delivery Fee
-              </span>
-              <span className="text-green-400 font-semibold text-lg">
-                Tk {deliveryFee}/-
-              </span>
-            </div>
-            <div className="w-full flex justify-between items-center">
-              <span className="text-lg text-black font-semibold">Taxes</span>
-              <span className="text-green-400 font-semibold text-lg">
-                Tk {taxes}/-
-              </span>
-            </div>
-          </div>
-          <div className="w-full border-t-2 border-black mt-6 flex justify-between gap-4 p-8">
-            <span className="text-2xl text-black font-bold">Total</span>
-            <span className="text-green-400 font-semibold text-lg">
-              Tk {total}/-
-            </span>
-          </div>
-          <button className="w-full p-3 bg-green-300 rounded-lg text-black hover:bg-green-400 transition-all font-bold">
-            Place Order
-          </button>
         </div>
       </div>
     </div>

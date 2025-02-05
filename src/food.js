@@ -241,13 +241,4 @@ export const food_items = [
     food_image: image24,
     price: 799,
   },
-  {
-    id: 25,
-    food_name: "Pasta Primavera",
-    food_category: "pasta",
-    food_type: "veg",
-    food_quantity: 1,
-    food_image: image25,
-    price: 899,
-  },
 ];
