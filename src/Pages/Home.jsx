@@ -3,11 +3,11 @@ import Card from "../components/Card";
 import Nav from "../components/nav";
 import { food_items } from "../food";
 import Hero from "../components/Hero";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { dataContext } from "../context/UserContext";
 
 const Home = () => {
-  let [cate, setCate] = useState(food_items);
-
+  let { cate, setCate } = useContext(dataContext);
   function filter(category) {
     console.log("Selected Category:", category);
 
