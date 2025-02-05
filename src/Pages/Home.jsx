@@ -5,10 +5,13 @@ import { food_items } from "../food";
 import Hero from "../components/Hero";
 import { useContext, useState } from "react";
 import { dataContext } from "../context/UserContext";
+import Card2 from "../components/Card2";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   let { cate, setCate } = useContext(dataContext);
 
+  // Function to filter items by category
   function filter(category) {
     console.log("Selected Category:", category);
 
@@ -19,7 +22,6 @@ const Home = () => {
         console.log(
           `Checking: ${item.food_name}, Category: ${item.food_category}`
         );
-        // Normalize the case of both category and item.food_category
         return item.food_category.toLowerCase() === category.toLowerCase();
       });
 
@@ -46,18 +48,18 @@ const Home = () => {
       {/* Categories Section */}
       <div className="p-4 mt-[50px] sm:mt-[80px] md:mt-[100px]">
         <div className="grid grid-cols-3 gap-4 md:flex md:flex-wrap md:justify-center md:gap-6">
-          {Categories.map((item) => (
+          {Categories.map((category) => (
             <div
-              key={item.id}
+              key={category.id}
               className="bg-white rounded-lg shadow-md p-3 
                          w-full sm:w-auto md:w-24 lg:w-28 h-24 flex flex-col items-center justify-center 
                          hover:shadow-lg transition-shadow duration-300 cursor-pointer 
                          text-center hover:bg-green-200"
-              onClick={() => filter(item.name)} // ✅ Add click event
+              onClick={() => filter(category.name)} // Category filter click
             >
-              <div className="text-3xl sm:text-4xl">{item.image}</div>
+              <div className="text-3xl sm:text-4xl">{category.image}</div>
               <div className="mt-1 text-xs sm:text-sm font-bold">
-                {item.name}
+                {category.name}
               </div>
             </div>
           ))}
@@ -66,16 +68,19 @@ const Home = () => {
 
       {/* Card Section */}
       <div className="w-full flex flex-wrap gap-5 px-5 justify-center items-center pt-8 pb-8">
-        {cate.map((item) => (
+        {/* Food items after category filter */}
+        {cate.map((food) => (
           <Card
-            key={item.id}
-            name={item.food_name}
-            image={item.food_image}
-            price={item.price}
-            id={item.id}
-            type={item.food_type}
+            key={food.id}
+            name={food.food_name}
+            image={food.food_image}
+            price={food.price}
+            id={food.id}
+            type={food.food_type}
           />
         ))}
+
+        {/* Cart Items */}
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
 import { LuLeafyGreen } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi"; // Import the missing icon
+import { useDispatch } from "react-redux";
+import { AddItem } from "../redux/cartSlice";
 
 const Card = ({ name, image, id, price, type }) => {
+  let dispatch = useDispatch();
   return (
     <div className="w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col gap-3 shadow-lg hover:border-2 border-green-300 transition-normal">
       <div className="w-[100%] h-[60%] overflow-hidden rounded-lg">
@@ -23,7 +26,13 @@ const Card = ({ name, image, id, price, type }) => {
           </span>
         </div>
       </div>
-      <button className="w-full p-3 bg-green-300 rounded-lg text-black hover:bg-green-400 transition-all font-bold">
+      <button
+        className="w-full p-3 bg-green-300 rounded-lg text-black hover:bg-green-400 transition-all font-bold"
+        onClick={() =>
+          dispatch(
+            AddItem({ id: id, name: name, price: price, image: image, qty: 1 })
+          )
+        }>
         Add to dish
       </button>
     </div>
