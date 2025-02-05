@@ -35,12 +35,20 @@ const Nav = () => {
   }, []);
 
   useEffect(() => {
-    let newlist = food_items.filter((item) => item.food_name.includes(input));
+    let newlist = food_items.filter((item) =>
+      item.food_name.toLowerCase().includes(input.toLowerCase())
+    );
     setCate(newlist);
   }, [input]);
 
   // Using Redux to get cart items
   let cartItems = useSelector((state) => state.cart);
+
+  let subTotal = cartItems.reduce((total, item) => total + item.price, 0);
+  let deliveryFee = 40;
+  let taxes = (subTotal * 0.5) / 100;
+  let total = Math.floor(subTotal + deliveryFee + taxes);
+
   return (
     <div className="w-full h-[80px] md:h-[100px] flex justify-between items-center px-4 md:px-8 fixed top-0 left-0 z-50 bg-white shadow-md">
       {/* Logo Container */}
@@ -89,7 +97,7 @@ const Nav = () => {
           </button>
 
           {/* Cart Items */}
-          <div className="w-full mt-8 flex flex-col gap-5">
+          <div className="w-full mt-8 flex flex-col gap-5 overflow-auto max-h-[400px]">
             {cartItems.length > 0 ? (
               cartItems.map((cartItem) => (
                 <Card2
@@ -107,6 +115,37 @@ const Nav = () => {
               </p>
             )}
           </div>
+          <div className="w-full border-t-2 border-black mt-6 flex flex-col gap-4 p-8 items-center">
+            <div className="w-full flex justify-between ">
+              <span className="text-lg text-black font-semibold">Subtotal</span>
+              <span className="text-green-400 font-semibold text-lg">
+                Tk {subTotal}/-
+              </span>
+            </div>
+            <div className="w-full flex justify-between items-center">
+              <span className="text-lg text-black font-semibold">
+                Delivery Fee
+              </span>
+              <span className="text-green-400 font-semibold text-lg">
+                Tk {deliveryFee}/-
+              </span>
+            </div>
+            <div className="w-full flex justify-between items-center">
+              <span className="text-lg text-black font-semibold">Taxes</span>
+              <span className="text-green-400 font-semibold text-lg">
+                Tk {taxes}/-
+              </span>
+            </div>
+          </div>
+          <div className="w-full border-t-2 border-black mt-6 flex justify-between gap-4 p-8">
+            <span className="text-2xl text-black font-bold">Total</span>
+            <span className="text-green-400 font-semibold text-lg">
+              Tk {total}/-
+            </span>
+          </div>
+          <button className="w-full p-3 bg-green-300 rounded-lg text-black hover:bg-green-400 transition-all font-bold">
+            Place Order
+          </button>
         </div>
       </div>
     </div>

@@ -1,7 +1,10 @@
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { RemoveItem } from "../redux/cartSlice";
 
 function Card2({ name, id, price, image, qty }) {
+  let dispatch = useDispatch();
   return (
     <div className="w-full p-4 shadow-lg flex flex-col sm:flex-row justify-between gap-4">
       {/* Left Section: Image + Item Details */}
@@ -12,8 +15,8 @@ function Card2({ name, id, price, image, qty }) {
         </div>
 
         {/* Item Details */}
-        <div className="flex flex-col justify-between w-[60%] sm:w-[50%] gap-3 sm:gap-5">
-          <div className="text-lg sm:text-xl text-gray-600 font-semibold">
+        <div className="flex flex-col justify-between w-[60%] sm:w-[50%] gap-3 sm:gap-3">
+          <div className="text-lg sm:text-xl text-black font-semibold">
             {name}
           </div>
 
@@ -37,7 +40,10 @@ function Card2({ name, id, price, image, qty }) {
         <span className="text-lg sm:text-xl text-green-400 font-semibold">
           Tk {price}/-
         </span>
-        <RiDeleteBinLine className="w-[30px] h-[30px] text-red-400 hover:text-red-500 cursor-pointer" />
+        <RiDeleteBinLine
+          className="w-[30px] h-[30px] text-red-400 hover:text-red-500 cursor-pointer"
+          onClick={() => dispatch(RemoveItem(id))}
+        />
       </div>
     </div>
   );

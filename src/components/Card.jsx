@@ -5,6 +5,7 @@ import { AddItem } from "../redux/cartSlice";
 
 const Card = ({ name, image, id, price, type }) => {
   let dispatch = useDispatch();
+
   return (
     <div className="w-[300px] h-[400px] bg-white p-3 rounded-lg flex flex-col gap-3 shadow-lg hover:border-2 border-green-300 transition-normal">
       <div className="w-[100%] h-[60%] overflow-hidden rounded-lg">
