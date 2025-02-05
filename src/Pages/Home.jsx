@@ -8,6 +8,7 @@ import { dataContext } from "../context/UserContext";
 
 const Home = () => {
   let { cate, setCate } = useContext(dataContext);
+
   function filter(category) {
     console.log("Selected Category:", category);
 
@@ -32,8 +33,18 @@ const Home = () => {
       <Nav />
       <Hero />
 
+      {/* Space for Title/Description */}
+      <div className="text-center mt-8">
+        <h2 className="text-3xl font-bold text-green-600">
+          Browse Our Delicious Categories
+        </h2>
+        <p className="mt-2 text-lg text-gray-600">
+          Explore a variety of mouth-watering dishes for every taste.
+        </p>
+      </div>
+
       {/* Categories Section */}
-      <div className="p-4 mt-[100px] sm:mt-[150px] md:mt-[200px]">
+      <div className="p-4 mt-[50px] sm:mt-[80px] md:mt-[100px]">
         <div className="grid grid-cols-3 gap-4 md:flex md:flex-wrap md:justify-center md:gap-6">
           {Categories.map((item) => (
             <div
