@@ -5,6 +5,7 @@ import {
   FaLinkedin,
   FaTwitter,
 } from "react-icons/fa";
+import { SiGmail } from "react-icons/si"; // Gmail logo import
 
 const Footer = () => {
   return (
@@ -19,35 +20,51 @@ const Footer = () => {
             <p className="text-gray-400 mt-2 text-sm text-center md:text-left">
               Fresh & Delicious Food, Delivered to Your Doorstep.
             </p>
+            {/* Dhaka, Bangladesh moved here */}
+            <p className="text-gray-400 text-sm mt-4">📍 Dhaka, Bangladesh</p>
           </div>
 
-          {/* Quick Links */}
-          <div className="flex flex-col items-center">
+          {/* Quick Links and Additional Links in 2 rows - Centered */}
+          <div className="flex flex-col items-center justify-center text-center md:text-center">
             <h3 className="text-xl font-semibold text-green-400">
               Quick Links
             </h3>
-            <ul className="mt-3 space-y-2">
-              <li>
-                <a href="#" className="text-gray-400 hover:text-green-400">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-green-400">
-                  Menu
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-green-400">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-green-400">
-                  Contact
-                </a>
-              </li>
-            </ul>
+            <div className="grid grid-cols-2 gap-4 mt-3">
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-green-400">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-green-400">
+                    Menu
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-green-400">
+                    About Us
+                  </a>
+                </li>
+              </ul>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-green-400">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-green-400">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-gray-400 hover:text-green-400">
+                    FAQ
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Social Media & Contact */}
@@ -71,14 +88,19 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-gray-400 mt-3 text-sm">📞 01785867900</p>
-            <p className="text-gray-400 text-sm">📍 Dhaka, Bangladesh</p>
-            <p className="text-gray-400 text-sm">
-              Gmail: atikmahmud482@gmail.com
-            </p>
+            <div className="flex items-center text-gray-400 text-sm mt-2">
+              <SiGmail className="text-red-500 w-5 h-5 mr-2" />{" "}
+              {/* Gmail logo */}
+              <a
+                href="mailto:atikmahmud482@gmail.com"
+                className="hover:text-green-400">
+                atikmahmud482@gmail.com
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Copyright */}
+        {/* Copyright Section - Bottom */}
         <div className="text-center text-gray-500 text-sm border-t border-gray-700 mt-6 pt-4">
           © {new Date().getFullYear()} Foodie Delight. All Rights Reserved.
         </div>
