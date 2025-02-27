@@ -1,8 +1,5 @@
-
 function App() {
-  return (
-    <span>subscribe Zainkeepscode</span>
-  );
+  return <span>subscribe Atik-al-mahmud</span>;
 }
 
 export default App;
