@@ -1,5 +1,11 @@
+import Header from "./components/Header/Header";
+
 function App() {
-  return <span>subscribe Atik-al-mahmud</span>;
+  return (
+    <div className="App">
+      <Header></Header>
+    </div>
+  );
 }
 
 export default App;
